@@ -1,32 +1,32 @@
-const express = require('express');
+const express = require('express')
 
 const {
-  getAllProducts,
-  getProductById,
-  createNewProduct,
-  updateProduct,
-  deleteProduct
-} = require('../controllers/products.controller');
+	getAllProducts,
+	getProductById,
+	createNewProduct,
+	updateProduct,
+	deleteProduct,
+} = require('../controllers/products.controller')
 
-const { validateSession } = require('../middlewares/auth.middleware');
+const { validateSession } = require('../middlewares/auth.middleware')
 const {
-  createProductValidations,
-  validateResult
-} = require('../middlewares/validators.middleware');
+	createProductValidations,
+	validateResult,
+} = require('../middlewares/validators.middleware')
 
-const router = express.Router();
+const router = express.Router()
 
-router.use(validateSession);
-
-router
-  .route('/')
-  .get(getAllProducts)
-  .post(createProductValidations, validateResult, createNewProduct);
+router.use(validateSession)
 
 router
-  .route('/:id')
-  .get(getProductById)
-  .patch(updateProduct)
-  .delete(deleteProduct);
+	.route('/')
+	.get(getAllProducts)
+	.post(createProductValidations, validateResult, createNewProduct)
 
-module.exports = { ProductsRouter: router };
+router
+	.route('/:id')
+	.get(getProductById)
+	.patch(updateProduct)
+	.delete(deleteProduct)
+
+module.exports = { ProductsRouter: router }
